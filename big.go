@@ -4,25 +4,21 @@ import (
 	"bytes"
 	"container/list"
 	"fmt"
-	"strconv"
 )
 
 type Big struct{ triplets *list.List }
 
-func ParseBig(raw string) *Big {
+func NewBigFromSmall(n int) *Big {
 	triplets := list.New()
 
-	for len(raw) > 0 {
-		if len(raw) <= 3 {
-			num, _ := strconv.Atoi(raw)
-			triplets.PushBack(num)
-			raw = ""
-		} else {
-			num, _ := strconv.Atoi(raw[len(raw)-3:])
-			triplets.PushBack(num)
-			raw = raw[:len(raw)-3]
+	for n >= 0 {
+		triplets.PushBack(n % 1000)
+		n /= 1000
+		if n == 0 {
+			break
 		}
 	}
+
 	return &Big{triplets: triplets}
 }
 

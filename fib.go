@@ -9,8 +9,8 @@ type FibonacciCounter struct {
 
 func NewFibonacciCounter() *FibonacciCounter {
 	return &FibonacciCounter{
-		a: ParseBig("0"),
-		b: ParseBig("1"),
+		a: NewBigFromSmall(0),
+		b: NewBigFromSmall(1),
 	}
 }
 
